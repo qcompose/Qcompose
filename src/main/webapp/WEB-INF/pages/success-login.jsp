@@ -29,7 +29,7 @@
   <div class="panel-body">
     <!-- List group -->
   <ul class="list-group">
-    <li class="list-group-item"><a href="secure/add">Create Questionnaire </a></li>
+    <li class="list-group-item"><a href="questionnaire/add">Create Questionnaire </a></li>
     <li class="list-group-item"> <a href="secure/list"> Edit Questionnaire</a></li>
     <li class="list-group-item"><a href="secure/add">View Questionnaire </a></li>
     <li class="list-group-item"> <a href="secure/list"> Delete Questionnaire</a></li>

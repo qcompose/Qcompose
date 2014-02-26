@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<a href="success-login" class="btn btn-link">Back</a>
+<a href="success-login" class="btn btn-link"><span class="glyphicon glyphicon-home"></span>Back</a>
 
 <h3>Users</h3>
 <c:if test="${!empty userList}">

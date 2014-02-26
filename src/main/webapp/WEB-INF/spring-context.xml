@@ -46,6 +46,9 @@
                 <value>co.usassoc.qcomposer.model.Customer</value>
                 <value>co.usassoc.qcomposer.model.User</value>
                 <value>co.usassoc.qcomposer.model.Authority</value>
+                <value>co.usassoc.qcomposer.model.Questionnaire</value>
+                <value>co.usassoc.qcomposer.model.Question</value>
+                <value>co.usassoc.qcomposer.model.Answer</value>
             </list>
         </property>
         <property name="hibernateProperties">

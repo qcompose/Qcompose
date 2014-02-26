@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<a href="success-login" class="btn btn-link">Back</a>
+<a href="success-login" class="btn btn-link"><span class="glyphicon glyphicon-home"></span>Back</a>
 
 <h2>Qcompose Manager</h2>
 <form:form method="get" action="secure/add" commandName="user" class="form-horizontal">

@@ -24,4 +24,6 @@ public class SecurityNavigation {
 	public ModelAndView successLogin() {
 		return new ModelAndView("success-login");
 	}
+	
+	
 }
