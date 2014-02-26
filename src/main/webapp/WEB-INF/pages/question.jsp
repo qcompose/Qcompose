@@ -38,17 +38,17 @@
 					        <form:input path="questionText" placeholder="Question Text" cssClass="form-control"/>
 					        <form:errors path="questionText" cssClass="error"/>
 						</div>
-						<div class="form-group" id="accordion">
+						<div class="form-group">
 						 <form:label path="questionType">
 						  <spring:message code="label.questionType"/>
 					        </form:label>
-					        <form:select path ="questionType" class="form-control input-sm" >
+					        <form:select path ="questionType" class="form-control input-sm">
 					        	<form:option value="0" label = "--Choose Question Type--"></form:option>
-							    <form:option value="one" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">Radio Button</form:option>
-							    <form:option value="two" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">Check Box</form:option>
-							    <form:option value="three" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">MultiSelect Box</form:option>
-							    <form:option value="four" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">Single Text Box</form:option>
-							    <form:option value="five" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">Comment/Essay Box</form:option>
+							    <form:option value="one">Radio Button</form:option>
+							    <form:option value="two">Check Box</form:option>
+							    <form:option value="three">MultiSelect Box</form:option>
+							    <form:option value="four">Single Text Box</form:option>
+							    <form:option value="five">Comment/Essay Box</form:option>
 							</form:select>
 						</div>	
 						<div class="form-group" id="collapseOne">
@@ -58,7 +58,7 @@
 					        <span class="help-block">Enter each option on a separate line. </span>
 					        <form:textarea path="answerOptions"  class="form-control"/>
 					        <form:errors path="answerOptions" cssClass="error"/>
-						</div>		
+						</div>			
 					 </fieldset>
 	
                    </form:form>
