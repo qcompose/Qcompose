@@ -14,6 +14,7 @@ import java.util.List;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
+	
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerDAOImpl.class);
     @Autowired
     private SessionFactory sessionFactory;

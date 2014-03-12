@@ -6,7 +6,7 @@ import co.usassoc.qcomposer.model.Question;
 
 public interface QuestionDAO {
 	
-public boolean addQuestion(Question question);
+	public boolean addQuestion(Question question);
 	
 	public List<Question> listQuestion();
 

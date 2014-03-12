@@ -1,7 +1,9 @@
 package co.usassoc.qcomposer.controller;
 
+import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,10 @@ import co.usassoc.qcomposer.service.api.QuestionService;
 @Controller
 public class QuestionController {
 	
-	
+	@Autowired
 	private QuestionService questionService;
+	@Autowired
+	ServletContext context;
 	
 
     @RequestMapping(value="**/questionnaire/question/add", method=RequestMethod.GET)
@@ -32,8 +36,10 @@ public class QuestionController {
     	 if (result.hasErrors()) {
 	            return "question";
 	        }
-    	// questionService.addQuestion(question);
-	        return "redirect:questionnaire";
+    	 ArrayList<Question> questionsList = new ArrayList<Question>();
+    	 questionsList.add(question);
+    	 context.setAttribute("questionsList", questionsList);
+	        return "redirect:questionnaire/add";
    	}
 
 }

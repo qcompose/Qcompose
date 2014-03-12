@@ -14,7 +14,7 @@ import co.usassoc.qcomposer.model.Authority;
 	@Repository
 	public class AuthorityDAOImpl implements AuthorityDAO {
 		
-		 private static final Logger LOGGER = LoggerFactory.getLogger(CustomerDAOImpl.class);
+		 private static final Logger LOGGER = LoggerFactory.getLogger(AuthorityDAOImpl.class);
 		@Autowired
 		private SessionFactory sessionFactory;
 		private Authority authority;

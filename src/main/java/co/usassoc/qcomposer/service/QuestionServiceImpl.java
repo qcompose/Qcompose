@@ -2,27 +2,32 @@ package co.usassoc.qcomposer.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import co.usassoc.qcomposer.dao.api.QuestionDAO;
 import co.usassoc.qcomposer.model.Question;
 import co.usassoc.qcomposer.service.api.QuestionService;
 
+@Service
 public class QuestionServiceImpl implements QuestionService{
+	  @Autowired
+	  private QuestionDAO questionDAO;
 
-	@Override
+	  @Transactional
 	public boolean addQuestion(Question question) {
-		// TODO Auto-generated method stub
-		return false;
+		return questionDAO.addQuestion(question);
 	}
 
-	@Override
+	  @Transactional
 	public List<Question> listQuestion() {
-		// TODO Auto-generated method stub
-		return null;
+		return questionDAO.listQuestion();
 	}
 
-	@Override
-	public void removeQuestion(Integer questionId) {
-		// TODO Auto-generated method stub
-		
+	  @Transactional
+	public void removeQuestion(Integer questionId) {		
+		  questionDAO.removeQuestion(questionId);
 	}
 
 }
