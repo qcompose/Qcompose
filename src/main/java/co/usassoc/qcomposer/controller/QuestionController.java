@@ -1,6 +1,7 @@
 package co.usassoc.qcomposer.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -13,33 +14,42 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import co.usassoc.qcomposer.model.Question;
-import co.usassoc.qcomposer.service.api.QuestionService;
+import co.usassoc.qcomposer.model.QuestionAndAnswerOptions;
 
 @Controller
 public class QuestionController {
 	
-	@Autowired
-	private QuestionService questionService;
 	@Autowired
 	ServletContext context;
 	
 
     @RequestMapping(value="**/questionnaire/question/add", method=RequestMethod.GET)
 	public String loadAddQuestion(Map<String, Object> map) {
-    	 map.put("question", new Question());
+    	 map.put("question", new QuestionAndAnswerOptions());
 	        return "question";
 	}
     
     @RequestMapping(value="**/questionnaire/question/save", method=RequestMethod.GET)
-   	public String addQuestion(@ModelAttribute("question") @Valid Question question, BindingResult result) {
+   	public String addQuestion(@ModelAttribute("questionAndAnswerOptions") @Valid QuestionAndAnswerOptions questionAndAnswerOptions, BindingResult result) {
     	 if (result.hasErrors()) {
-	            return "question";
+	            return "questionAndAnswerOptions";
 	        }
-    	 ArrayList<Question> questionsList = new ArrayList<Question>();
-    	 questionsList.add(question);
+    	 ArrayList<QuestionAndAnswerOptions> questionsList = new ArrayList<QuestionAndAnswerOptions>();
+    	 mapQuestionAndAnswerOptionsToTable(questionsList);
+    	 
+    	 questionsList.add(questionAndAnswerOptions);
     	 context.setAttribute("questionsList", questionsList);
 	        return "redirect:questionnaire/add";
    	}
 
+    
+    private void mapQuestionAndAnswerOptionsToTable(List<QuestionAndAnswerOptions> questionAndAnswerOptionsList){
+    	if(questionAndAnswerOptionsList != null && questionAndAnswerOptionsList.size() > 0 ){
+    		foreach(questionAndAnswerOptionsList: QuestionAndAnswerOptions){
+    			
+    		}
+    	}
+    	
+    	
+    }
 }

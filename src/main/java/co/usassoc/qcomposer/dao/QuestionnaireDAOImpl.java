@@ -22,7 +22,6 @@ public class QuestionnaireDAOImpl implements QuestionnaireDAO{
 	@Override
 	public boolean addQuestionnaire(Questionnaire questionnaire) {
 		 LOGGER.info("Adding Questionnaire: " + questionnaire);
-		 LOGGER.info(" Questionnaire details: " + questionnaire.getQuestions());
 	        try {
 	        	User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    		String createdBy = user.getUsername();

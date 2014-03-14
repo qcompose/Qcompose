@@ -38,7 +38,7 @@ public class QuestionnaireController {
         }
     	ArrayList<Question> questionsList = new ArrayList<Question>();
     	questionsList  =  ((ArrayList<Question>) context.getAttribute("questionsList"));
-    questionnaire.setQuestions(questionsList);
+    	questionnaire.setQuestions(questionsList);
     	questionnaireService.addQuestionnaire(questionnaire);
         return "questionnaire";
 

@@ -1,54 +1,49 @@
  
       //These JS generates table with single row , button to add and delete row functionalities 
       //when common options are selected
-    function getElementsByClassName(c,el){
-        if(typeof el=='string'){el=document.getElementById(el);}
-        if(!el){el=document;}
-        if(el.getElementsByClassName){return el.getElementsByClassName(c);}
-        var arr=[],
-            allEls=el.getElementsByTagName('*');
-        for(var i=0;i<allEls.length;i++){
-            if(allEls[i].className.split(' ').indexOf(c)>-1){arr.push(allEls[i])}
+   
+        function addRow(tableID) {
+ 
+            var table = document.getElementById(tableID);
+ 
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+ 
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+            element1.name="chkbox[]";
+            cell1.appendChild(element1);
+ 
+            var cell2 = row.insertCell(1);
+            var element2 = document.createElement("input");
+            element2.type = "text";
+            element2.name = "answerOptions";
+            cell2.appendChild(element2);
+ 
+ 
         }
-        return arr;
-    }
-    function killMe(el){
-        return el.parentNode.removeChild(el);
-    }
-    function getParentByTagName(el,tag){
-        tag=tag.toLowerCase();
-        while(el&&el.nodeName.toLowerCase()!=tag){
-            el=el.parentNode;
+ 
+        function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+ 
+ 
+            }
+            }catch(e) {
+                alert(e);
+            }
         }
-        return el||null;
-    }
-    function delRow(){
-        killMe(getParentByTagName(this,'tr'));
-    }
-    function addRow() {
-        var table = getParentByTagName(this,'table')
-        var lastInputs=table.rows.length>2?
-            table.rows[table.rows.length-2].getElementsByTagName('input'):[];
-        for(var i=0;i<lastInputs.length-1;i++){
-            if(lastInputs[i].value==''){return false;}
-        }
-        var rowCount = table.rows.length;
-        var row = table.insertRow(rowCount-1);
-        
-        var cell1 = row.insertCell(0);
-        var element1 = document.createElement("input");
-        element1.type = "text";
-        element1.path = "answerOptions";
-        cell1.appendChild(element1);
-
-        
-        var element3 = document.createElement("input");
-        element3.type = "button";
-        element3.className="del";
-        element3.value=' Delete';
-        element3.onclick=delRow;
-        cell1.appendChild(element3);
-    }
 	
     // This JS shows single row table for common Option type (check box, radio button ect ) and Text area
     //for comment or essay question types when selected 

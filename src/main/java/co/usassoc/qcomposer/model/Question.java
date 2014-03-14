@@ -1,5 +1,7 @@
 package co.usassoc.qcomposer.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,9 +25,6 @@ public class Question {
 	
 	@Column(name = "QUESTION_TYPE")
 	private String questionType; //radio,multiselect, checkbox ,text, ect
-	
-	@Column(name = "ANSWER_OPTIONS")
-	private String answerOptions; //answer options viz answer1,answer2, answer3...to choose from
 	
 	
 	@ManyToOne
@@ -57,11 +56,6 @@ public class Question {
 		this.questionType = questionType;
 	}
 	
-	public String getAnswerOptions() {
-		return answerOptions;
-	}
-	public void setAnswerOptions(String answerOptions) {
-		this.answerOptions = answerOptions;
-	}
+	
 	
 }

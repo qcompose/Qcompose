@@ -47,32 +47,30 @@
 							</form:select>
 						</div>	
 						<div class="form-group" id="commonAnswerOpt" style="display:none">
-					        <table id="tableId" class="table table-bordered table-striped table-condensed table-hover">
+						
+						<INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+ 
+    <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+ 
+    
+					        <table id="dataTable" class="table table-bordered table-striped table-condensed table-hover">
 							   <tr>
-							       <th>Answer Options:</th>
-							       <td><input class="add" type="button" value=" Add Option" /></td>
+
+							        <TD><INPUT type="checkbox" name="chk"/></TD>
+
+          						  <TD> <INPUT type="text" name="answerOptions"/> </TD>
 							    </tr>
 							     <tr>
 							    <td></td>
 							     </tr>
 							  
 							</table>
-							<script type="text/javascript">
-							    (function(){
-							    var els=getElementsByClassName("add","tableId");
-							    for(var i=0;i<els.length;i++){
-							        els[i].onclick=addRow;
-							    }
-							    els[0].onclick();
-							    })();
-							</script>
 							
 						</div>	
 						<div class="form-group" id="commentAnswerOpt" style="display:none">
 					        <form:label path="answerOptions">
 					           <spring:message code="label.answerOptions"/>
 					        </form:label>
-					        <span class="help-block">Enter each option on a separate line. </span>
 					        <form:textarea path="answerOptions"  class="form-control"/>
 					        <form:errors path="answerOptions" cssClass="error"/>
 						</div>			 
