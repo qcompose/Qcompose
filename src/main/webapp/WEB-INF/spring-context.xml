@@ -51,6 +51,7 @@
                 <value>co.usassoc.qcomposer.model.Questionnaire</value>
                 <value>co.usassoc.qcomposer.model.Question</value>
                 <value>co.usassoc.qcomposer.model.Answer</value>
+                <value>co.usassoc.qcomposer.model.AnswerOptions</value>
                 <value>co.usassoc.qcomposer.model.QuestionAndAnswerOptions</value>
             </list>
         </property>

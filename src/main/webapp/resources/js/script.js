@@ -1,4 +1,9 @@
  
+
+function setContinue(){
+	var elem =document.getElementById("continueAdding");
+	elem.value = "true";
+}
       //These JS generates table with single row , button to add and delete row functionalities 
       //when common options are selected
    
@@ -20,8 +25,7 @@
             element2.type = "text";
             element2.name = "answerOptions";
             cell2.appendChild(element2);
- 
- 
+            
         }
  
         function deleteRow(tableID) {
@@ -44,6 +48,7 @@
                 alert(e);
             }
         }
+        
 	
     // This JS shows single row table for common Option type (check box, radio button ect ) and Text area
     //for comment or essay question types when selected 

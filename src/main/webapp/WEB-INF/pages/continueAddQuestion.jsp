@@ -16,7 +16,7 @@
     <script src="<c:url value="/resources/js/script.js" />"></script>   
 </head>
 <body>
-   
+   <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
              <div class="modal-header">
@@ -24,7 +24,7 @@
                     <h3 class="modal-title" id="myModalLabel">Add Question</h3>
                 </div>
                 <div class="modal-body" >
-                   <form:form method="get" action="questionnaire/question/save" commandName="question">
+                   <form:form method="get" action="questionnaire/question/continue" commandName="question">
                    <form:hidden id="continueAdding" path="continueToAdd" ></form:hidden>
 					  <fieldset>
 						<div class="form-group">
@@ -77,11 +77,8 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit"  class="btn btn-primary">Save & Close</button>
                     <button type="submit" name="continueAdd" onclick = "setContinue()" class="btn btn-primary"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save & Continue</button>
-                    <!-- <a href="questionnaire/question/continue" onClick = "document.getElementById('question').submit();" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save & Continue Next Question<span class="glyphicon glyphicon-arrow-right"></span> </a>
-                 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
- </div>    -->
- <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
- </div>
+         
+ 
                 </div>
     </div>
                    </form:form>
@@ -89,7 +86,7 @@
                 
             </div>
         </div>
-       
+        </div>
  <script src="<c:url value="/resources/js/jquery.min.js" />"></script> 
  <!-- Latest compiled and minified JavaScript -->
       <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>

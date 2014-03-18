@@ -1,31 +1,55 @@
 package co.usassoc.qcomposer.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ANSWER_OPTIONS")
-public class AnswerOptions {
+public class AnswerOptions implements Serializable{
+	
 	
 	@Id
     @Column(name = "OPTION_ID")
     @GeneratedValue
-	private String optionId;
+	private Integer optionId;
 	
-
-	@Id
-    @Column(name = "OPTION_BODY")
+	@Column(name = "OPTION_BODY")
 	private String optionBody;
 	
-	public String getOptionId() {
+	@ManyToOne
+    @JoinColumn(name="question_id")
+	private Question question;
+	
+	@Column(name ="CORRECT_ANSWER")
+	private String correctAnswer;
+	
+	public Integer getOptionId() {
 		return optionId;
 	}
-	public void setOptionId(String optionId) {
+	public void setOptionId(Integer optionId) {
 		this.optionId = optionId;
 	}
+	
+	public String getCorrectAnswer() {
+		return correctAnswer;
+	}
+	public void setCorrectAnswer(String correctAnswer) {
+		this.correctAnswer = correctAnswer;
+	}
+	public Question getQuestion() {
+		return question;
+	}
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+	
 	public String getOptionBody() {
 		return optionBody;
 	}

@@ -26,7 +26,7 @@ public class QuestionnaireDAOImpl implements QuestionnaireDAO{
 	        	User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    		String createdBy = user.getUsername();
 	    		questionnaire.setCreatedBy(createdBy);
-	            sessionFactory.getCurrentSession().save(questionnaire);
+	            sessionFactory.getCurrentSession().merge(questionnaire);
 	            return true;
 	        } catch (Exception e) {
 	            LOGGER.error("Error in adding Questionnaire", e);

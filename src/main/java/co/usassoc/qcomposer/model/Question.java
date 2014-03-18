@@ -2,13 +2,17 @@ package co.usassoc.qcomposer.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.IndexColumn;
 
 
 @Entity
@@ -26,11 +30,20 @@ public class Question {
 	@Column(name = "QUESTION_TYPE")
 	private String questionType; //radio,multiselect, checkbox ,text, ect
 	
-	
 	@ManyToOne
     @JoinColumn(name="questionnaire_id")
 	private Questionnaire questionnaire;
 	
+	@OneToMany(cascade={CascadeType.ALL})
+    @JoinColumn(name="question_id")
+    private List<AnswerOptions> answerOptions;
+	
+	public List<AnswerOptions> getAnswerOptions() {
+		return answerOptions;
+	}
+	public void setAnswerOptions(List<AnswerOptions> answerOptions) {
+		this.answerOptions = answerOptions;
+	}
 	public Questionnaire getQuestionnaire() {
 		return questionnaire;
 	}
