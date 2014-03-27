@@ -10,6 +10,43 @@ public class QuestionAndAnswerOptions {
 	private String continueToAdd; //hidden variable to decide which url to redirect onClick of 'save&close' and 'save& continue' button
 	private List answerOptions;
 	private List correctAnswer;
+	private int questionnaireId;
+	public int getQuestionnaireId() {
+		return questionnaireId;
+	}
+	public void setQuestionnaireId(int questionnaireId) {
+		this.questionnaireId = questionnaireId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getOrgName() {
+		return orgName;
+	}
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	private String title;
+	private String orgName;
+	private String createdBy;
+	private String updatedBy;
+	
+	
 	
 	public List getCorrectAnswer() {
 		return correctAnswer;

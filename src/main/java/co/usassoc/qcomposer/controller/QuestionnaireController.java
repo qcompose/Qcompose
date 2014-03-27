@@ -25,13 +25,15 @@ public class QuestionnaireController {
 	@Autowired
 	ServletContext context;
 
-	  @RequestMapping(value="**/questionnaire/add", method=RequestMethod.GET)
-		public String loadacreateQuestionnaire(Map<String, Object> map) {
-	    	 map.put("questionnaire", new Questionnaire());
-		        return "questionnaire";
-		}
+	// /* @RequestMapping(value="**/questionnaire/add", method=RequestMethod.GET)
+		//public String loadacreateQuestionnaire(Map<String, Object> map) {
+	    //	 map.put("questionnaire", new Questionnaire());
+		   //     return "questionnaire";
+		//}
 	  
-    @RequestMapping(value="**/questionnaire/save", method=RequestMethod.GET)
+	  
+	  
+    @RequestMapping(value="**/questionnaire/save", method=RequestMethod.POST)
 	public String addQuestionnaire(@ModelAttribute("questionnaire") @Valid Questionnaire questionnaire, BindingResult result) {
     	if (result.hasErrors()) {
             return "questionnaire";

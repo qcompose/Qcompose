@@ -76,12 +76,9 @@
        <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit"  class="btn btn-primary">Save & Close</button>
-                    <button type="submit" name="continueAdd" onclick = "setContinue()" class="btn btn-primary"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save & Continue</button>
-                    <!-- <a href="questionnaire/question/continue" onClick = "document.getElementById('question').submit();" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save & Continue Next Question<span class="glyphicon glyphicon-arrow-right"></span> </a>
-                 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
- </div>    -->
- <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
- </div>
+                    <button type="submit" name="continueAdd" onclick = "setContinue()" class="btn btn-primary">Save & Continue</button>
+ 
+
                 </div>
     </div>
                    </form:form>

@@ -24,6 +24,12 @@ public class QuestionController {
 	@Autowired
 	ServletContext context;
 	
+	
+	@RequestMapping(value="**/questionnaire/add", method=RequestMethod.GET)
+	public String loadacreateQuestionnaire(Map<String, Object> map) {
+    	 map.put("questionAccordion", new QuestionAndAnswerOptions());
+	        return "questionAccordion";
+	}
 
     @RequestMapping(value="**/questionnaire/question/add", method=RequestMethod.GET)
 	public String loadAddQuestion(Map<String, Object> map) {
@@ -31,7 +37,7 @@ public class QuestionController {
 	        return "question";
 	}
     
-    @RequestMapping(value="**/questionnaire/question/save", method=RequestMethod.GET)
+    @RequestMapping(value="**/questionnaire/question/save", method=RequestMethod.POST)
    	public String addQuestion(@ModelAttribute("questionAndAnswerOptions") @Valid QuestionAndAnswerOptions questionAndAnswerOptions, BindingResult result) {
     	 if (result.hasErrors()) {
 	            return "questionAndAnswerOptions";
@@ -51,11 +57,17 @@ public class QuestionController {
     	 questionsList.add(question);
     	 context.setAttribute("questionsList", questionsList);
     	 if(!questionAndAnswerOptions.getContinueToAdd().isEmpty()){
-    		 return "redirect:/questionnaire/question/continue";
+    		 return "redirect:questionnaire/question/continue";
     	 }else{
 	        return "redirect:questionnaire/add";
     	 }
    	}
+    
+    @RequestMapping(value="**/questionnaire/question/continue", method=RequestMethod.GET)
+  		public String loadContinueToAddQuestion(Map<String, Object> map) {
+  	    	 map.put("question", new QuestionAndAnswerOptions());
+  		        return "question";
+  		}
     
     private Question mapQuestionAndAnswerOptionsToTable(ArrayList<QuestionAndAnswerOptions> questionAndAnswerOptionsList, Question question,  AnswerOptions answerOptions){
     	if(questionAndAnswerOptionsList != null && questionAndAnswerOptionsList.size() > 0 ){

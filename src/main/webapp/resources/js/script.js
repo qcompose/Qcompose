@@ -1,8 +1,24 @@
- 
+// This query adds new question panel 
 
+function setButton(){
+	var $template = $(".template");
+
+var hash = 2;
+
+       
+$(".btn-add-panel").on("click", function () {
+    var $newPanel = $template.clone();
+    $newPanel.find(".collapse").removeClass("in");
+    $newPanel.find(".accordion-toggle").attr("href",  "#" + (++hash))
+             .text("Dynamic panel #" + hash);
+    $newPanel.find(".panel-collapse").attr("id", hash).addClass("collapse").removeClass("in");
+    $("#accordion1").append($newPanel.fadeIn());
+});
+ 
+}
 function setContinue(){
 	var elem =document.getElementById("continueAdding");
-	elem.value = "true";
+	elem.value = "yes";
 }
       //These JS generates table with single row , button to add and delete row functionalities 
       //when common options are selected
