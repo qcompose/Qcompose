@@ -6,11 +6,17 @@ public class QuestionAndAnswerOptions {
 	
 	private int questionId;
 	private String questionText; 
+	
 	private String questionType;
-	private String continueToAdd; //hidden variable to decide which url to redirect onClick of 'save&close' and 'save& continue' button
 	private List answerOptions;
 	private List correctAnswer;
 	private int questionnaireId;
+	private String title;
+	private String orgName;
+	private String createdBy;
+	private String updatedBy;
+	
+	
 	public int getQuestionnaireId() {
 		return questionnaireId;
 	}
@@ -41,11 +47,6 @@ public class QuestionAndAnswerOptions {
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	private String title;
-	private String orgName;
-	private String createdBy;
-	private String updatedBy;
-	
 	
 	
 	public List getCorrectAnswer() {
@@ -71,12 +72,6 @@ public class QuestionAndAnswerOptions {
 	}
 	public void setQuestionType(String questionType) {
 		this.questionType = questionType;
-	}
-	public String getContinueToAdd() {
-		return continueToAdd;
-	}
-	public void setContinueToAdd(String continueToAdd) {
-		this.continueToAdd = continueToAdd;
 	}
 	public List getAnswerOptions() {
 		return answerOptions;

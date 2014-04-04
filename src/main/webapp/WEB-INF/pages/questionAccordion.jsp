@@ -25,8 +25,7 @@
 $(window).load(function(){
 var $template = $(".template");
 
-var hash = 2;
-var count = 0;
+var hash = 1;
        
 $(".btn-add-panel").on("click", function () {
     var $newPanel = $template.clone();
@@ -38,96 +37,108 @@ $(".btn-add-panel").on("click", function () {
     $("#accordion1").append($newPanel.fadeIn());
     $newPanel.find(".que").attr("id", "que"+hash).addClass("que"+hash).removeClass("que");
     $newPanel.find(".queSel").attr("id", "queSel"+hash).addClass("queSel"+hash).removeClass("queSel");
-    
-    $newPanel.find(".queSel").prop('selectedIndex',0);
-    $newPanel.find("*").removeClass("que").addClass("que" + hash);
-   $newPanel.find(".queCommon").attr("id").replace("queCommon", "queCommon" +hash);
-   $newPanel.find(".queComment").attr("id").replace("queComment", "queComment" +hash);
-   $("#queCommon").hide();
-   $("#queComment").hide();
+    $newPanel.find(".queCommon").attr("id", "queCommon"+hash).addClass("queCommon"+hash).removeClass("queCommon");
+    $newPanel.find(".queComment").attr("id", "queComment"+hash).addClass("queComment"+hash).removeClass("queComment");
+    $newPanel.find(".dTable").attr("id", "dTable"+hash).addClass("dTable"+hash).removeClass("dTable");
+    $newPanel.find(".addButt").attr("id", "addButt"+hash).addClass("addButt"+hash).removeClass("addButt");
+    $newPanel.find(".delButt").attr("id", "delButt"+hash).addClass("delButt"+hash).removeClass("delButt");
    
-    //$('#queCommon').append('<div id="first'+count+'">text</div>');
-    count++;
 });
 
 });//]]>  
 
 function submitAll (){
+	var questionnaireForm = document.getElementById("questionnaireForm");
 	$('form').each(function() {
 	    var that = $(this);
+	    var id =$(this.form);
+	    if(this != questionnaireForm){
 	    $.post(that.attr('action'), that.serialize());
+	    }
 	});
+	questionnaireForm.submit();
 }
 
 
 	
 function admSelectCheck1(oSelect, el){
-	alert("1");
 	var selectId = el.toString();
-	alert(selectId);
 	var id = selectId.substring(6);
-	alert(id);
 	var idCommon ='queCommon'+id;
 	var idComment ='queComment'+id;
-	alert(idComment);
 	var oform = oSelect.form;
 	for (var i = 0; i < oform.length; i++) {
 		var x = oform.elements[i].name;
-		while( x =="questionType"){
-			var opt = oSelect.options[oSelect.selectedIndex].value;
-			alert(opt);
-				if(opt=="radio" || opt == "checkBox" || opt == "multiSelect" ){
-					
-					    	document.getElementById(idCommon).style.display = "block";
-					    	}
-					        else{
-					        	document.getElementById(idCommon).style.display = "none";
-					        }
-				if(opt=="essay"){
-					alert("in");
-			    	document.getElementById(idComment).style.display = "block";
-			   	}
-			       else{
-			    	   document.getElementById(idComment).style.display = "none";
-			       }
-				break;
-				}
-		
+			while( x =="questionType"){
+				if(oSelect){
+				var opt = oSelect.options[oSelect.selectedIndex].value;
+					if(opt=="radio" || opt == "checkBox" || opt == "multiSelect" ){
+
+						  document.getElementById(idCommon).style.display = "block";
+					}
+					else{
+						  document.getElementById(idCommon).style.display = "none";
+					}
+					if(opt=="essay" || opt == "singleText"){
+				    	  document.getElementById(idComment).style.display = "block";
+				   	}
+				    else{
+				    	  document.getElementById(idComment).style.display = "none";
+				    }
+					break;
+			}else{
+				document.getElementById(idCommon).style.display = "none";
+				document.getElementById(idComment).style.display = "none";
+				
 			}
-		} 
+		}
+		
+	}
+} 
 
-	
-	  
-	/* var selectId = el.toString();
-	var id = selectId.substring(4);
-	var opt = sel.options[sel.selectedIndex].value;
-	
-	var idComment ='#commentAnswerOpt'+id;
-	
-	if(sel){
-	
-		    if(opt=="radio" || opt == "checkBox" || opt == "multiSelect" ){
-		    	alert("in");
-		    	document.el.elements["commonAnswerOpt1"].style.display = "block";
-		    	//document.getElementById(idCommon).style.display = "block";
-		    	}
-		        else{
-		        	//el.elements["commonAnswerOpt1"].style.display = "none";
-		        	document.getElementById("#commonAnswerOpt").style.display = "none";
-		        }
-		    if(opt=="essay"){
-		    	alert("in");
-		    	document.getElementById("#commentAnswerOpt").style.display = "block";
-		   	}
-		       else{
-		    	   document.getElementById(idComment).style.display = "none";
-		       }
-	}else{
-		document.getElementById(idCommon).style.display = "none";
-		document.getElementById(idComment).style.display = "none";
-	}      
-} */
+function addRow1(tabID) {
+	var el = tabID.toString();
+	var id = el.substring(7);
+	var tableID ="dTable"+id;
+    var table = document.getElementById(tableID);
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var element1 = document.createElement("input");
+    element1.type = "checkbox";
+    element1.name="chkbox[]";
+    cell1.appendChild(element1);
+    var cell2 = row.insertCell(1);
+    var element2 = document.createElement("input");
+    element2.type = "text";
+    element2.name = "answerOptions";
+    cell2.appendChild(element2);
+    
+}
 
+function deleteRow1(tabID) {
+    try {
+    	var el = tabID.toString();
+	    var id = tabID.substring(7);
+	    var tableID ="dTable"+id;
+	    var table = document.getElementById(tableID);
+	    var rowCount = table.rows.length;
+	
+	    for(var i=0; i<rowCount; i++) {
+	        var row = table.rows[i];
+	        var chkbox = row.cells[0].childNodes[0];
+	        if(null != chkbox && true == chkbox.checked) {
+	            table.deleteRow(i);
+	            rowCount--;
+	            i--;
+	        }
+
+
+    }
+    }catch(e) {
+        alert(e);
+    }
+}	
 </script>
 
 </head>
@@ -139,13 +150,13 @@ function admSelectCheck1(oSelect, el){
     <div class="panel-heading">
       <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          Add Question
+          Add Questionnaire
         </a>
       </h4>
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-        <form:form id = "que1" method="post" action="questionnaire/save" commandName="questionAccordion" class="form-horizontal">
+        <form:form id ="questionnaireForm" method="post" action="questionnaire/save" commandName="questionAccordion" class="form-horizontal">
         
 <fieldset>
 	<div class="form-group">
@@ -193,7 +204,6 @@ function admSelectCheck1(oSelect, el){
     <div id="collapse10" class="panel-collapse collapse in">
       <div class="panel-body">
        <form:form  id = "que2" method="post" action="questionnaire/question/save" commandName="questionAccordion">
-                   <form:hidden id="continueAdding" path="continueToAdd" ></form:hidden>
 					  <fieldset>
 						<div class="form-group">
 					        <form:label path="questionText">
@@ -215,7 +225,7 @@ function admSelectCheck1(oSelect, el){
 							    <form:option id="commentOption" value="essay">Comment/Essay Box</form:option>
 							</form:select>
 						</div>	
-						<div class="form-group" id="commonAnswerO" style="display:none">
+						<div class="form-group" id="commonAnswerOpt" style="display:none">
 						 <form:label path="answerOptions">
 						  <spring:message code="label.answerOptions"/>
 					        </form:label>
@@ -230,7 +240,7 @@ function admSelectCheck1(oSelect, el){
 							    </tr>		  
 							</table>	
 						</div>	
-						<div class="form-group" id="commentAnswerO" style="display:none">
+						<div class="form-group" id="commentAnswerOpt" style="display:none">
 					        <form:label path="answerOptions">
 					           <spring:message code="label.answerOptions"/>
 					        </form:label>
@@ -244,11 +254,11 @@ function admSelectCheck1(oSelect, el){
       </div>
     </div>
   </div>
-  <div  id="clonedInput1" class="panel panel-default template">
+  <div class="panel panel-default template" style="display:none">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse20">
-         Question #2
+         Question #1
         </a>
       </h4>
         
@@ -277,22 +287,22 @@ function admSelectCheck1(oSelect, el){
 							    <form:option  value="essay">Comment/Essay Box</form:option>
 							</form:select>
 						</div>	
-						<div class="form-group" id="queCommon" class="queCommon"  style="display:none">
+						<div id="queCommon" class="queCommon" style="display:none">
 						 <form:label path="answerOptions">
 						  <spring:message code="label.answerOptions"/>
 					        </form:label>
-						<INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+						<INPUT type="button" id="addButt" value="Add Row" class="addButt" onclick="addRow1(this.id)" />
  
-   						 <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+   						 <INPUT type="button" id="delButt" value="Delete Row" class="delButt" onclick="deleteRow1(this.id)" />
     
-					        <table id="dataTable" border="1">
+					        <table class="dTable" id="dTable" border="1">
 							   <tr>
-							      <TD><INPUT type="checkbox" name="chk"/></TD>
+							      <TD><INPUT type="checkbox" name="chk" /></TD>
           						  <TD> <INPUT type="text"  name="answerOptions"/> </TD> 
 							    </tr>		  
 							</table>	
 						</div>	
-						<div class="form-group" id="queComment" class="queComment" style="display:none">
+						<div id="queComment" class="queComment" style="display:none">
 					        <form:label path="answerOptions">
 					           <spring:message code="label.answerOptions"/>
 					        </form:label>

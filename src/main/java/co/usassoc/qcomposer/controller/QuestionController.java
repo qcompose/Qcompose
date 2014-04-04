@@ -23,6 +23,7 @@ public class QuestionController {
 	
 	@Autowired
 	ServletContext context;
+	ArrayList<Question> questionsList = new ArrayList<Question>();
 	
 	
 	@RequestMapping(value="**/questionnaire/add", method=RequestMethod.GET)
@@ -48,26 +49,20 @@ public class QuestionController {
     	 List<AnswerOptions> answerOptionsList = new ArrayList<AnswerOptions>();
     	 List<AnswerOptions> loadedAnswerOptions = new ArrayList<AnswerOptions>();
     	 
-    	 ArrayList<Question> questionsList = new ArrayList<Question>();
+    	 
     	 ArrayList<QuestionAndAnswerOptions> questionAndAnswerOptionsList = new ArrayList<QuestionAndAnswerOptions>();
-    	 questionAndAnswerOptionsList.add(questionAndAnswerOptions);
-    	 question =  mapQuestionAndAnswerOptionsToTable(questionAndAnswerOptionsList, question, answerOptions);
-    	 loadedAnswerOptions = mapAnswerOptions(questionAndAnswerOptionsList,answerOptionsList,optionsList);
-    	 question.setAnswerOptions(loadedAnswerOptions);
-    	 questionsList.add(question);
-    	 context.setAttribute("questionsList", questionsList);
-    	 if(!questionAndAnswerOptions.getContinueToAdd().isEmpty()){
-    		 return "redirect:questionnaire/question/continue";
-    	 }else{
+    	 if(questionAndAnswerOptions.getQuestionText()!= null && !questionAndAnswerOptions.getQuestionText().isEmpty()){
+    		 questionAndAnswerOptionsList.add(questionAndAnswerOptions);
+	    	 question =  mapQuestionAndAnswerOptionsToTable(questionAndAnswerOptionsList, question, answerOptions);
+	    	 loadedAnswerOptions = mapAnswerOptions(questionAndAnswerOptionsList,answerOptionsList,optionsList);
+	    	 question.setAnswerOptions(loadedAnswerOptions);
+	    	 questionsList.add(question);
+	    	 context.setAttribute("questionsList", questionsList);
+	    	 }
 	        return "redirect:questionnaire/add";
-    	 }
+
    	}
-    
-    @RequestMapping(value="**/questionnaire/question/continue", method=RequestMethod.GET)
-  		public String loadContinueToAddQuestion(Map<String, Object> map) {
-  	    	 map.put("question", new QuestionAndAnswerOptions());
-  		        return "question";
-  		}
+   
     
     private Question mapQuestionAndAnswerOptionsToTable(ArrayList<QuestionAndAnswerOptions> questionAndAnswerOptionsList, Question question,  AnswerOptions answerOptions){
     	if(questionAndAnswerOptionsList != null && questionAndAnswerOptionsList.size() > 0 ){
