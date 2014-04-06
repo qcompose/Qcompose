@@ -39,6 +39,7 @@
           p:url="${db.databaseUrl}" p:username="${db.username}"
           p:password="${db.password}"/>
           
+          
 
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -64,6 +65,7 @@
         </property>
        
     </bean>
+    
 
     <tx:annotation-driven/>
 

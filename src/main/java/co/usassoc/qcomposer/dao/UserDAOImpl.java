@@ -65,7 +65,7 @@ public class UserDAOImpl implements UserDAO{
           authoritySet.add(authority);
           user.setAuthoritySet(authoritySet);
           getCurrentSession().save(user);
-        	  transaction.commit();
+          transaction.commit();
             return true;
         } catch (Exception  e) {
         	try{

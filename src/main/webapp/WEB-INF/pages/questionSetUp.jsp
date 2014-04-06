@@ -51,7 +51,6 @@ function submitAll (){
 	var questionnaireForm = document.getElementById("questionnaireForm");
 	$('form').each(function() {
 	    var that = $(this);
-	    var id =$(this.form);
 	    if(this != questionnaireForm){
 	    $.post(that.attr('action'), that.serialize());
 	    }
@@ -61,7 +60,8 @@ function submitAll (){
 
 
 	
-function admSelectCheck1(oSelect, el){
+
+function admSelectCheckAccordion(oSelect, el){
 	var selectId = el.toString();
 	var id = selectId.substring(6);
 	var idCommon ='queCommon'+id;
@@ -96,49 +96,6 @@ function admSelectCheck1(oSelect, el){
 	}
 } 
 
-function addRow1(tabID) {
-	var el = tabID.toString();
-	var id = el.substring(7);
-	var tableID ="dTable"+id;
-    var table = document.getElementById(tableID);
-    var rowCount = table.rows.length;
-    var row = table.insertRow(rowCount);
-    var cell1 = row.insertCell(0);
-    var element1 = document.createElement("input");
-    element1.type = "checkbox";
-    element1.name="chkbox[]";
-    cell1.appendChild(element1);
-    var cell2 = row.insertCell(1);
-    var element2 = document.createElement("input");
-    element2.type = "text";
-    element2.name = "answerOptions";
-    cell2.appendChild(element2);
-    
-}
-
-function deleteRow1(tabID) {
-    try {
-    	var el = tabID.toString();
-	    var id = tabID.substring(7);
-	    var tableID ="dTable"+id;
-	    var table = document.getElementById(tableID);
-	    var rowCount = table.rows.length;
-	
-	    for(var i=0; i<rowCount; i++) {
-	        var row = table.rows[i];
-	        var chkbox = row.cells[0].childNodes[0];
-	        if(null != chkbox && true == chkbox.checked) {
-	            table.deleteRow(i);
-	            rowCount--;
-	            i--;
-	        }
-
-
-    }
-    }catch(e) {
-        alert(e);
-    }
-}	
 </script>
 
 </head>
@@ -156,7 +113,7 @@ function deleteRow1(tabID) {
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-        <form:form id ="questionnaireForm" method="post" action="questionnaire/save" commandName="questionAccordion" class="form-horizontal">
+        <form:form id ="questionnaireForm" method="post" action="questionnaire/save" commandName="questionSetUp" class="form-horizontal">
         
 <fieldset>
 	<div class="form-group">
@@ -203,7 +160,7 @@ function deleteRow1(tabID) {
     </div>
     <div id="collapse10" class="panel-collapse collapse in">
       <div class="panel-body">
-       <form:form  id = "que2" method="post" action="questionnaire/question/save" commandName="questionAccordion">
+       <form:form  id = "que2" method="post" action="questionnaire/question/save" commandName="questionSetUp">
 					  <fieldset>
 						<div class="form-group">
 					        <form:label path="questionText">
@@ -239,6 +196,7 @@ function deleteRow1(tabID) {
           						  <TD> <INPUT type="text"  name="answerOptions"/> </TD> 
 							    </tr>		  
 							</table>	
+							<form:errors path="answerOptions" cssClass="error"/>
 						</div>	
 						<div class="form-group" id="commentAnswerOpt" style="display:none">
 					        <form:label path="answerOptions">
@@ -265,7 +223,7 @@ function deleteRow1(tabID) {
     </div>
     <div id="collapse20" class="panel-collapse collapse">
       <div class="panel-body">
-         <form:form id ="que"  name="que" method="post" class="que" action="questionnaire/question/save" commandName="questionAccordion">
+         <form:form id ="que"  name="que" method="post" class="que" action="questionnaire/question/save" commandName="questionSetUp">
 					  <fieldset>
 						<div class="form-group">
 					        <form:label path="questionText">
@@ -278,7 +236,7 @@ function deleteRow1(tabID) {
 						 <form:label path="questionType">
 						  <spring:message code="label.questionType"/>
 					        </form:label>
-					         <form:select path ="questionType" class ="queSel" id ="queSel"  name ="queSel"  onchange="admSelectCheck1(this, this.id);" >
+					         <form:select path ="questionType" class ="queSel" id ="queSel"  name ="queSel"  onchange="admSelectCheckAccordion(this, this.id);" >
 					        	<form:option  selected="selected" value="0" label = "--Choose Question Type--"></form:option>
 							    <form:option  value="radio">Radio Button</form:option>
 							    <form:option  value="checkBox">Check Box</form:option>
@@ -291,9 +249,9 @@ function deleteRow1(tabID) {
 						 <form:label path="answerOptions">
 						  <spring:message code="label.answerOptions"/>
 					        </form:label>
-						<INPUT type="button" id="addButt" value="Add Row" class="addButt" onclick="addRow1(this.id)" />
+						<INPUT type="button" id="addButt" value="Add Row" class="addButt" onclick="addRowAccordion(this.id)" />
  
-   						 <INPUT type="button" id="delButt" value="Delete Row" class="delButt" onclick="deleteRow1(this.id)" />
+   						 <INPUT type="button" id="delButt" value="Delete Row" class="delButt" onclick="deleteRowAccordion(this.id)" />
     
 					        <table class="dTable" id="dTable" border="1">
 							   <tr>

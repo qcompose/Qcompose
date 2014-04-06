@@ -28,8 +28,8 @@ public class QuestionController {
 	
 	@RequestMapping(value="**/questionnaire/add", method=RequestMethod.GET)
 	public String loadacreateQuestionnaire(Map<String, Object> map) {
-    	 map.put("questionAccordion", new QuestionAndAnswerOptions());
-	        return "questionAccordion";
+    	 map.put("questionSetUp", new QuestionAndAnswerOptions());
+	        return "questionSetUp";
 	}
 
     @RequestMapping(value="**/questionnaire/question/add", method=RequestMethod.GET)
@@ -39,9 +39,9 @@ public class QuestionController {
 	}
     
     @RequestMapping(value="**/questionnaire/question/save", method=RequestMethod.POST)
-   	public String addQuestion(@ModelAttribute("questionAndAnswerOptions") @Valid QuestionAndAnswerOptions questionAndAnswerOptions, BindingResult result) {
+   	public String addQuestion(@ModelAttribute("questionSetUp") @Valid QuestionAndAnswerOptions questionAndAnswerOptions, BindingResult result, Map model) {
     	 if (result.hasErrors()) {
-	            return "questionAndAnswerOptions";
+	            return "questionSetUp";
 	        }
     	 Question question =  new Question();
     	 AnswerOptions answerOptions =  new AnswerOptions();
@@ -59,6 +59,7 @@ public class QuestionController {
 	    	 questionsList.add(question);
 	    	 context.setAttribute("questionsList", questionsList);
 	    	 }
+    	 model.put("questionSetUp", questionAndAnswerOptions);
 	        return "redirect:questionnaire/add";
 
    	}

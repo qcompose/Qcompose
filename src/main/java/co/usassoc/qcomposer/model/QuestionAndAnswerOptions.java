@@ -6,7 +6,6 @@ public class QuestionAndAnswerOptions {
 	
 	private int questionId;
 	private String questionText; 
-	
 	private String questionType;
 	private List answerOptions;
 	private List correctAnswer;
